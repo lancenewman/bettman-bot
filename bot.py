@@ -4,18 +4,15 @@ import sys
 import discord
 import requests
 from dotenv import load_dotenv
+from datetime import date
 from dateutil import parser, tz
 
 
 def get_game_info():
-    # today = date.today()
-    # params = (
-    #     ('teamId', '18'),
-    #     ('date', today.strftime('%Y-%m-%d'))
-    # )
+    today = date.today()
     params = (
         ('teamId', '18'),
-        ('date', '2022-02-01')
+        ('date', today.strftime('%Y-%m-%d'))
     )
     response = requests.get(
         "https://statsapi.web.nhl.com/api/v1/schedule", params=params)
@@ -63,5 +60,4 @@ async def on_ready():
         print(e)
 
 
-# client.run(TOKEN)
-print(game_message())
+client.run(TOKEN)
